@@ -3,9 +3,6 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     counter: this.props.counter.value,
-    imageUrl:
-      "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
-    tags: ["tag1", "tag2", "tag3"]
   };
 
   //   constructor() {
