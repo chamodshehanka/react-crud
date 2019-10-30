@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    counter: 0,
+    counter: this.props.value,
     imageUrl:
       "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
     tags: ["tag1", "tag2", "tag3"]
@@ -41,6 +41,7 @@ class Counter extends Component {
   };
 
   render() {
+
     return (
       <React.Fragment>
         <span style={this.styles} className={this.getBadgeClasses()}>
