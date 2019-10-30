@@ -13,6 +13,17 @@ class App extends Component {
     ]
   };
 
+  constructor() {
+    super();
+    console.log("app Constructor");
+  }
+
+  componentDidMount(prevProps, prevState) {
+    // if (prevProps.counter.value !== this.props.counter.value) {
+      
+    // }
+  }
+
   handleIncrement = counter => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
