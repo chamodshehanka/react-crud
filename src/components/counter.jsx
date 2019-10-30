@@ -4,12 +4,40 @@ class Counter extends Component {
   state = {
     counter: 0,
     imageUrl:
-      "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+      "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+    tags: ["tag1", "tag2", "tag3"]
   };
+
+  //   constructor() {
+  //       super();
+  //       this.handleIncrement = this.handleIncrement.bind(this);
+  //   }
 
   styles = {
     fontWeight: "bold",
     fontSize: 10
+  };
+
+  renderTags() {
+    if (this.state.tags.length === 0) return <p>There are no tags</p>;
+
+    return (
+      <ul>
+        {this.state.tags.map(tag => (
+          <li key={tag.id}>{tag}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  handleIncrement = product => {
+    this.setState({
+      counter: this.state.counter + 1
+    });
+  };
+
+  doHandleIncrement = () => {
+    this.handleIncrement({ id: 1 });
   };
 
   render() {
@@ -21,14 +49,24 @@ class Counter extends Component {
         <span style={this.styles} className={this.getBadgeClasses()}>
           {this.formatCount()}
         </span>
-        <button className="btn btn-secondary btn-sm">Increment</button>
+        <button
+          onClick={() => this.handleIncrement(this.product)}
+          className="btn btn-secondary btn-sm"
+        >
+          Increment
+        </button>
+
+        <div>
+          {this.state.tags.length === 0 && "Please create a new tag!"}
+          {this.renderTags()}
+        </div>
       </React.Fragment>
     );
   }
 
   getBadgeClasses() {
     let classes = "badge m-2";
-    classes += this.state.counter === 0 ? " badge-warning" : " primary";
+    classes += this.state.counter === 0 ? " badge-warning" : " badge-primary";
     return classes;
   }
 
