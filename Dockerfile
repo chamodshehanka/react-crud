@@ -7,10 +7,16 @@ COPY . ./
 
 RUN npm install
 
-RUN npm run build
+RUN npm i -g create-react-app
 
-FROM nginx:1.15
+CMD ["npm","start"]
 
-COPY --from=build-stage /app/build/ C:\nginx-1.16.1\html
+# RUN npm run build
+
+# EXPOSE 3000
+
+# FROM nginx:1.15
+
+# COPY --from=build-stage /app/build/ C:\nginx-1.16.1\html
 
 # COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
