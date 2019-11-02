@@ -1,21 +1,16 @@
 # Stage 1
-FROM node:latest
+FROM node:alpine AS build-stage
 
 WORKDIR /app
 
 COPY . ./
 
-RUN yarn
+RUN npm install
 
-RUN yarn build
+RUN npm run build
 
-# Stage 2 - the production environment
-FROM nginx:alpine
+FROM nginx:1.15
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /app/build/ C:\nginx-1.16.1\html
 
-COPY --from=react-build /app/build /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
