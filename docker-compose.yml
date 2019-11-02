@@ -1,0 +1,10 @@
+version: '3.6'
+services: 
+  nginx:
+    restart: always
+    build:
+      context: ./services/frontend
+    volumes: 
+      - './services/'
+    ports: 
+     - 8080:80
