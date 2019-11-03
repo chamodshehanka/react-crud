@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import NavBar from "./components/navbar";
-import "./App.css";
-import Counters from "./components/counters";
+import React, { Component } from 'react';
+import NavBar from './components/navbar';
+import './App.css';
+import Counters from './components/counters';
+import TodoComponent from './components/todo/todo-component';
 
 class App extends Component {
   state = {
@@ -15,12 +16,11 @@ class App extends Component {
 
   constructor() {
     super();
-    console.log("app Constructor");
+    console.log('app Constructor');
   }
 
   componentDidMount(prevProps, prevState) {
     // if (prevProps.counter.value !== this.props.counter.value) {
-      
     // }
   }
 
@@ -56,13 +56,15 @@ class App extends Component {
           totalCounters={this.state.counters.filter(c => c.value > 0).length}
         />
 
-        <main className="container">
+        <main className='container'>
           <Counters
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
             onDelete={this.handleDelete}
           />
+
+          <TodoComponent />
         </main>
       </React.Fragment>
     );
